@@ -20,12 +20,7 @@ class YoutubeController extends Controller
         $video_id = YoutubeHelper::getVideoID(request()->video_url);
 
         // All Thubnails URL
-        $thumbnails = collect([
-            ['quality' => 'mq', 'url' => "http://img.youtube.com/vi/$video_id/mqdefault.jpg"],
-            ['quality' => 'hq', 'url' => "http://img.youtube.com/vi/$video_id/hqdefault.jpg"],
-            ['quality' => 'sd', 'url' => "http://img.youtube.com/vi/$video_id/sddefault.jpg"],
-            ['quality' => 'hd', 'url' => "http://img.youtube.com/vi/$video_id/maxresdefault.jpg"],
-        ]);
+        $thumbnails = YoutubeHelper::getThumbnails($video_id);
 
         // Create Usage History
         History::create([
