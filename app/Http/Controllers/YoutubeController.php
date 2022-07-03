@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use Illuminate\Http\Request;
 
 class YoutubeController extends Controller
@@ -26,6 +27,12 @@ class YoutubeController extends Controller
             ['quality' => 'hd', 'url' => "http://img.youtube.com/vi/$video_id/maxresdefault.jpg"],
         ]);
 
+        // Create Usage History
+        History::create([
+            'url' => request()->video_url,
+        ]);
+
+        // Return with Thumbnails
         return back()->with(['thumbnails' => $thumbnails]);
     }
 }

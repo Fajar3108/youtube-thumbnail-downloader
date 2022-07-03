@@ -7,6 +7,9 @@
 @endphp
 
 <main>
+    <header>
+        Total Usage : {{ App\Models\History::all()->count() }}
+    </header>
     @error('video_url')
     <div class="alert alert-error">
         {{ $message }}
