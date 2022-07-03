@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Helpers\YoutubeHelper;
 use App\Models\History;
-use Illuminate\Http\Request;
 
 class YoutubeController extends Controller
 {
