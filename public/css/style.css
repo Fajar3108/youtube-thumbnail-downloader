@@ -36,6 +36,19 @@ a {
     background-color: rgb(184, 0, 0);
 }
 
+.alert {
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.alert-error {
+    border: 2px solid #f00;
+    background-color: #ffe6e6;
+    color: #f00;
+}
+
 .hero {
     padding: 100px 0;
     display: flex;

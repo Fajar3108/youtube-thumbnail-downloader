@@ -2,20 +2,33 @@
 
 @section('content')
 
+@php
+    if (session()->has('thumbnails')) $thumbnails = session()->get('thumbnails');
+@endphp
+
 <main>
-    <section class="hero">
+    @error('video_url')
+    <div class="alert alert-error">
+        {{ $message }}
+    </div>
+    @enderror
+    <section class="hero @if (!isset($thumbnails)) h-100 @endif">
         <h1><span>Youtube</span> Thumbnail<br>Downloader</h1>
-        <form class="search-bar" method="GET">
-            <input type="text" placeholder="Paste Youtube Video URL here...">
+        <form class="search-bar" method="GET" action="{{ route('youtube.thumbnail') }}">
+            <input type="text" name="video_url" placeholder="Paste Youtube Video URL here...">
             <button class="btn">Search</button>
         </form>
     </section>
 
+    @if (isset($thumbnails))
     <section id="thumbnails">
+        @foreach ($thumbnails as $thumbnail)
         <div class="thumbnail">
-            <img src="https://i.ytimg.com/vi/wy-sWNXEgg8/maxresdefault.jpg" alt="maxres">
-            <a class="btn btn-download" href="https://i.ytimg.com/vi/wy-sWNXEgg8/maxresdefault.jpg" download>Download HD</a>
+            <img src="{{ $thumbnail['url'] }}" alt="Thumbnail {{ $thumbnail['quality'] }}">
+            <a class="btn btn-download" href="{{ $thumbnail['url'] }}" download="thumbnail" target="_blank">Download {{ strtoupper($thumbnail['quality']) }} Quality</a>
         </div>
+        @endforeach
     </section>
+    @endif
 </main>
 
