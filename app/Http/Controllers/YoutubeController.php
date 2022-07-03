@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\YoutubeHelper;
 use App\Models\History;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,7 @@ class YoutubeController extends Controller
         ]);
 
         // GET Video ID
-        preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", request()->video_url, $matches);
-        $video_id = $matches[0];
+        $video_id = YoutubeHelper::getVideoID(request()->video_url);
 
         // All Thubnails URL
         $thumbnails = collect([
