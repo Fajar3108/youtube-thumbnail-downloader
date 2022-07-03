@@ -13,7 +13,7 @@
     <section class="hero @if (!isset($thumbnails)) h-100 @endif">
         <h1><span>Youtube</span> Thumbnail<br>Downloader</h1>
         <form class="search-bar" method="GET" action="{{ route('youtube.thumbnail') }}">
-            <input type="text" name="video_url" placeholder="Paste Youtube Video URL here...">
+            <input type="text" name="video_url" placeholder="Paste Youtube Video URL here..." required>
             <button class="btn">Search</button>
         </form>
         @error('video_url')
